@@ -1,0 +1,40 @@
+{%extends "layout.html"%}
+{%block content%}
+	<h2>Hello {{current_user.first_name}}, take a look at your inventory.</h2>
+	{%for stock in stocks%}
+		{%if stock.stock_for == 'Factory'%}
+			<article class="media content-section">
+				<div class= "media">
+					<img class = "rounded-circle account-img" src="{{image_file_factory}}">
+			  <div class="media-body">
+				<div class="article-metadata">
+				  <h4><a class="mr-2" >Product: {{ stock.name }}</a></h4>
+				  <h4><a class="mr-2" >Stock For: {{ stock.stock_for }}</a></h4>
+				</div>
+				<div>
+					<form>
+						<input class="btn btn-danger" type="submit" value="With ingredients like these!! Too easy.">
+					</form>
+				</div>
+			</article>
+		{%endif%}
+	{%endfor%}
+	{%for stock in stocks%}
+		{%if stock.stock_for == 'Store'%}
+			<article class="media content-section">
+				<div class= "media">
+					<img class = "rounded-circle account-img" src="{{image_file_store}}">
+			  <div class="media-body">
+				<div class="article-metadata">
+				  <h4><a class="mr-2" >Product: {{ stock.name }}</a></h4>
+				  <h4><a class="mr-2" >Stock For: {{ stock.stock_for }}</a></h4>
+				</div>
+				<div>
+					<form>
+						<input class="btn btn-danger" type="submit" value="With great pizza comes great responsibility!">
+					</form>
+				</div>
+			</article>
+		{%endif%}
+	{%endfor%}
+{%endblock content%}

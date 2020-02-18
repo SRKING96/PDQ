@@ -1,0 +1,16 @@
+This environment contains all files related to the PDQ platform developed by DMSS.
+
+Thursday, January 19, 2020 - Started pushing python files to docker for easier remote access. Keep the steps in mind for updating docker repositories:
+
+docker build -t pdq .
+docker login
+docker tag pdq dmss/pdq:<tag>
+docker push dmss/pdq:<tag>
+
+Running image:
+docker run -p 5000:5000 pdq
+
+Pulling image:
+docker image pull [OPTIONS] dmss/pdq:<tag>
+
+tags:

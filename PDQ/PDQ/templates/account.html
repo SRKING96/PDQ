@@ -1,0 +1,42 @@
+{%extends "layout.html"%}
+{%block content%}
+	<h4>Hello {{current_user.title}} {{current_user.last_name}}, take a look at your inventory.</h4>
+			{%for i in factory_inventory%}
+				{%if i.store_id == St_id%}
+					<article class="media content-section">
+						<div class= "media">
+							<img class = "rounded-circle account-img" src="{{image_file_factory}}">
+					  <div class="media-body">
+						<h4><a class="article-title">Product: {{ i.name }}</a></h4>
+						<h4><a class="article-title">Product Amount: {{ i.amount }}{{ i.unit }}</a></h4>
+						<h4><a class="article-title">Last Update: {{ i.last_update.strftime('%Y-%m-%d') }}</a></h4>
+						{%if Tq > i.amount%}
+						<a class="mr-5" href="mailto:lundyshemar@yahoo.com?subject=Re-order&amp;body={{message}}">Re-order</a>
+						{%endif%}
+						{%if Tq > i.amount%}
+						<a class="mr-5" href="{{url_for('updateStock', stock_id=i.stock_id)}}">Update</a>
+						{%endif%}
+					  </div>
+					</article>
+				{%endif%}
+			{%endfor%}
+			{%for i in store_inventory%}
+				{%if i.store_id == St_id%}
+					<article class="media content-section">
+						<div class= "media">
+							<img class = "rounded-circle account-img" src="{{image_file_store}}">
+					  <div class="media-body">
+						<h4><a class="article-title">Product: {{ i.name }}</a></h4>
+						<h4><a class="article-title">Product Amount: {{ i.amount }}{{ i.unit }}</a></h4>
+						<h4><a class="article-title">Last Update: {{ i.last_update.strftime('%Y-%m-%d') }}</a></h4>
+						{%if Tq > i.amount%}
+						<a class="mr-5" href="mailto:lundyshemar@yahoo.com?subject=Re-order&amp;body={{message}}">Re-order</a>
+						{%endif%}
+						{%if Tq > i.amount%}
+						<a class="mr-5" href="{{url_for('updateStock', stock_id=i.stock_id)}}">Update</a>
+						{%endif%}
+					  </div>
+					</article>
+				{%endif%}
+			{%endfor%}
+{%endblock content%}

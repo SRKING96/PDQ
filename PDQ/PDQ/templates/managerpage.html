@@ -1,0 +1,21 @@
+{%extends "layout.html"%}
+{%block content%}
+	<h3>All active managers.</h3>
+	{%for manager in managers%}
+		<article class="media content-section">
+			<div class= "media">
+				<img class = "rounded-circle account-img" src="{{ image_file }}">
+		  <div class="media-body">
+			<div class="article-metadata">
+			  <h4><a class="mr-2" >Name: {{manager.title}} {{manager.first_name}} {{manager.last_name}}</a></h4>
+			  <h4><a class="mr-2" >ID number: {{manager.id}}</a></h4>
+			  <form>
+					<input class="btn btn-danger" type="submit" value="We make things happen. Pizza things.">
+				</form>
+			</div>
+		</article>
+	{%endfor%}
+	<div>
+		<a href="{{url_for('registerManager')}}" class="button">Create New Manager</a>
+	</div>
+{%endblock content%}

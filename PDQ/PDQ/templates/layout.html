@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->	
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='main.css')}}">
+
+	
+	{%if title %}
+		<title>PDQ inventory - {{title}}</title>
+	{%else%}
+		<title>inventory</title>
+	{%endif%}
+	<link rel="shortcut icon" href="C:\Users\Scholar\web\my-ws\venv\app\QCblog\templates\QC.png" type="image/png"/>
+</head>
+<body>
+	<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+		<div class="container">
+		  <a class="navbar-brand mr-4" href="/">PDQ</a>
+		  </div>
+		</div>
+	</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+	  {% if current_user.email == "shemarhenry24@gmail.com" %}
+        <ul class="nav flex-column">
+          <li class="nav-item" id="managerpage">
+            <a class="nav-link active" href="{{url_for('managerPage')}}">
+              <span data-feather="home"></span>
+              All Managers
+            </a>
+          </li>
+          <li class="nav-item" id="stock">
+            <a class="nav-link" href="{{url_for('stock')}}">
+              <span data-feather="file"></span>
+              Create Stock
+            </a>
+          </li>
+          <li class="nav-item" id="createstore">
+            <a class="nav-link" href="{{url_for('createStore')}}">
+              <span data-feather="shopping-cart"></span>
+              Create Store
+            </a>
+          </li>
+          <li class="nav-item" id="stockpage">
+            <a class="nav-link" href="{{url_for('stockPage')}}">
+              <span data-feather="users"></span>
+              View all Stocks
+            </a>
+          </li>
+		</ul>
+		{% endif %}
+		{% if current_user.is_authenticated %}
+		<ul class="nav flex-column">
+          <li class="nav-item" id="logout">
+            <a class="nav-link" href="{{url_for('logout')}}">
+              <span data-feather="bar-chart-2"></span>
+              Logout
+            </a>
+          </li>
+          <li class="nav-item" id="account">
+            <a class="nav-link" href="{{url_for('account')}}">
+              <span data-feather="home"></span>
+              Inventory <span class="sr-only">(current)</span>
+            </a>
+          </li>
+		 {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+          </button>
+        </div>
+      </div>
+	  
+	  <div class="row">
+		<div class="col-md-8">
+			{% with messages = get_flashed_messages(with_categories=true)%}
+				{%if messages%}
+					{%for category, message in mesages%}
+							<div class="alert alert-{{category}}">
+								{{message}}
+							</div>
+						{%endfor%}
+				{%endif%}
+			{%endwith%}
+		  {% block content %}{% endblock %}
+		</div>
+
+      
+      
+    </main>
+  </div>
+</div>
+	
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
